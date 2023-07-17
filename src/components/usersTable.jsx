@@ -10,8 +10,7 @@ const UserTable = ({
     onSort,
     selectedSort,
     onToggleBookmark,
-    onDelete,
-    ...rest
+    onDelete
 }) => {
     const columns = {
         name: { path: "name", name: "Имя" },

@@ -15,6 +15,17 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
         } // логика сортировки при повторном нажатии и/или нажатии на другой заголовок
     };
 
+    const renderSortArrow = (selectedSort, currentPath) => {
+        if (selectedSort.path === currentPath) {
+            if (selectedSort.order === "asc") {
+                return <i className="bi bi-caret-down-fill"></i>;
+            } else {
+                return <i className="bi bi-caret-up-fill"></i>;
+            }
+        }
+        return null;
+    }; // стрелки направления сортировки
+
     return (
         <thead>
             <tr>
@@ -31,15 +42,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         scope="col"
                     >
                         {columns[column].name}
-                        {selectedSort.path === columns[column].path ? (
-                            <i
-                                className={
-                                    selectedSort.order === "asc"
-                                        ? "bi bi-caret-up-fill"
-                                        : "bi bi-caret-down-fill"
-                                }
-                            />
-                        ) : null}
+                        {renderSortArrow(selectedSort, columns[column].path)}
                     </th>
                 ))}
                 {/* <th onClick={() => handleSort("name")} scope="col">
